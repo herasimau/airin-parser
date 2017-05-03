@@ -1,0 +1,144 @@
+// [gludio02][절망의폐허][일반]
+territory_begin	[gludio02_1922_01]	{{-24766;141264;-3992;-3392};{-22880;140908;-3992;-3392};{-23612;143484;-3992;-3392};{-25184;143320;-3992;-3392}}	territory_end
+npcmaker_ex_begin	[gludio02_1922_01]	name=[gludio02_1922_0101]	ai=[default_maker]	maximum_npc=9
+npc_ex_begin	[shield_skeleton]	pos=anywhere	total=2	respawn=30sec	respawn_rand=10sec	npc_ex_end
+npc_ex_begin	[ruin_imp]	pos=anywhere	total=2	respawn=30sec	respawn_rand=10sec	npc_ex_end
+npc_ex_begin	[corpse_eater_bat]	pos=anywhere	total=1	respawn=30sec	respawn_rand=10sec	npc_ex_end
+npcmaker_ex_end
+territory_begin	[gludio02_1922_02]	{{-25076;143472;-4016;-3116};{-23176;143692;-4016;-3116};{-21176;147504;-4016;-3116};{-27156;146736;-4016;-3116};{-26894;144465;-4016;-3116}}	territory_end
+npcmaker_ex_begin	[gludio02_1922_02]	name=[gludio02_1922_0201]	ai=[default_maker]	maximum_npc=32
+npc_ex_begin	[shield_skeleton]	pos=anywhere	total=6	respawn=30sec	respawn_rand=10sec	npc_ex_end
+npc_ex_begin	[skeleton_infantry]	pos=anywhere	total=4	respawn=30sec	respawn_rand=10sec	npc_ex_end
+npc_ex_begin	[ruin_imp]	pos=anywhere	total=2	respawn=30sec	respawn_rand=10sec	npc_ex_end
+npcmaker_ex_end
+territory_begin	[gludio02_1922_03]	{{-27012;146928;-3480;-2980};{-22128;147712;-3480;-2980};{-22132;148912;-3480;-2980};{-26312;148796;-3480;-2980}}	territory_end
+npcmaker_ex_begin	[gludio02_1922_03]	name=[gludio02_1922_0301]	ai=[default_maker]	maximum_npc=26
+npc_ex_begin	[shield_skeleton]	pos=anywhere	total=4	respawn=30sec	respawn_rand=10sec	npc_ex_end
+npc_ex_begin	[skeleton_infantry]	pos=anywhere	total=4	respawn=30sec	respawn_rand=10sec	npc_ex_end
+npc_ex_begin	[corpse_eater_bat]	pos=anywhere	total=2	respawn=30sec	respawn_rand=10sec	npc_ex_end
+npcmaker_ex_end
+territory_begin	[gludio02_1922_04]	{{-21912;147820;-3504;-2904};{-19144;147864;-3504;-2904};{-18884;148620;-3504;-2904};{-21964;148944;-3504;-2904}}	territory_end
+npcmaker_ex_begin	[gludio02_1922_04]	name=[gludio02_1922_0401]	ai=[default_maker]	maximum_npc=5
+npc_ex_begin	[ruin_imp]	pos=anywhere	total=3	respawn=30sec	respawn_rand=10sec	npc_ex_end
+npc_ex_begin	[corpse_eater_bat]	pos=anywhere	total=2	respawn=30sec	respawn_rand=10sec	npc_ex_end
+npcmaker_ex_end
+territory_begin	[gludio02_1922_05]	{{-23774;149292;-3216;-2716};{-22798;150210;-3216;-2716};{-22794;151698;-3216;-2716};{-25897;150790;-3216;-2716};{-26365;149283;-3216;-2716}}	territory_end
+npcmaker_ex_begin	[gludio02_1922_05]	name=[gludio02_1922_0501]	ai=[default_maker]	maximum_npc=15
+npc_ex_begin	[skeleton_infantry]	pos=anywhere	total=3	respawn=30sec	respawn_rand=10sec	npc_ex_end
+npc_ex_begin	[ruin_imp]	pos=anywhere	total=3	respawn=30sec	respawn_rand=10sec	npc_ex_end
+npc_ex_begin	[corpse_eater_bat]	pos=anywhere	total=3	respawn=30sec	respawn_rand=10sec	npc_ex_end
+npcmaker_ex_end
+territory_begin	[gludio02_1922_06]	{{-18736;149444;-3172;-2672};{-18684;150654;-3172;-2672};{-19959;151459;-3172;-2672};{-22300;151141;-3172;-2672};{-22797;149447;-3172;-2672}}	territory_end
+npcmaker_ex_begin	[gludio02_1922_06]	name=[gludio02_1922_0601]	ai=[default_maker]	maximum_npc=21
+npc_ex_begin	[shield_skeleton]	pos=anywhere	total=3	respawn=30sec	respawn_rand=10sec	npc_ex_end
+npc_ex_begin	[skeleton_infantry]	pos=anywhere	total=3	respawn=30sec	respawn_rand=10sec	npc_ex_end
+npc_ex_begin	[corpse_eater_bat]	pos=anywhere	total=3	respawn=30sec	respawn_rand=10sec	npc_ex_end
+npcmaker_ex_end
+territory_begin	[gludio02_1922_07]	{{-16128;147088;-3752;-2652};{-15172;148528;-3752;-2652};{-14840;150364;-3752;-2652};{-17316;151444;-3752;-2652};{-18312;151336;-3752;-2652};{-18704;147428;-3752;-2652}}	territory_end
+npcmaker_ex_begin	[gludio02_1922_07]	name=[gludio02_1922_0701]	ai=[default_maker]	maximum_npc=28
+npc_ex_begin	[shield_skeleton]	pos=anywhere	total=4	respawn=30sec	respawn_rand=10sec	npc_ex_end
+npc_ex_begin	[skeleton_infantry]	pos=anywhere	total=4	respawn=30sec	respawn_rand=10sec	npc_ex_end
+npc_ex_begin	[ruin_imp]	pos=anywhere	total=4	respawn=30sec	respawn_rand=10sec	npc_ex_end
+npcmaker_ex_end
+territory_begin	[gludio02_1922_08]	{{-21769;139426;-4052;-3652};{-19533;138484;-4052;-3652};{-18598;142361;-4052;-3652};{-21436;142836;-4052;-3652};{-22468;141628;-4052;-3652}}	territory_end
+territory_begin	[gludio02_1922_01b]	{{-19815;140063;-3962;-3562};{-19484;139828;-3962;-3562};{-19233;140205;-3962;-3562};{-19537;140441;-3962;-3562}}	territory_end
+territory_begin	[gludio02_1922_02b]	{{-19477;140600;-3962;-3562};{-19134;140548;-3962;-3562};{-19058;141088;-3962;-3562};{-19407;141138;-3962;-3562}}	territory_end
+territory_begin	[gludio02_1922_03b]	{{-19496;141228;-3962;-3562};{-19062;141155;-3962;-3562};{-18969;141843;-3962;-3562};{-19416;141901;-3962;-3562}}	territory_end
+territory_begin	[gludio02_1922_14b]	{{-20829;142126;-3962;-3562};{-20135;142040;-3962;-3562};{-20079;142492;-3962;-3562};{-20774;142574;-3962;-3562}}	territory_end
+npcmaker_ex_begin	[gludio02_1922_08]	banned_territory={[gludio02_1922_01b];[gludio02_1922_02b];[gludio02_1922_03b];[gludio02_1922_14b]}	name=[gludio02_1922_0801]	ai=[default_maker]	maximum_npc=18
+npc_ex_begin	[zombie_soldier]	pos=anywhere	total=6	respawn=30sec	respawn_rand=10sec	npc_ex_end
+npc_ex_begin	[ruin_imp_ribe]	pos=anywhere	total=4	respawn=30sec	respawn_rand=10sec	npc_ex_end
+npc_ex_begin	[zombie_warrior]	pos=anywhere	total=5	respawn=30sec	respawn_rand=10sec	npc_ex_end
+npc_ex_begin	[veelan_bugbear]	pos=anywhere	total=3	respawn=30sec	respawn_rand=10sec	npc_ex_end
+npcmaker_ex_end
+territory_begin	[gludio02_1922_09]	{{-23120;142812;-4008;-3508};{-22508;141676;-4008;-3508};{-21604;142928;-4008;-3508};{-21976;144740;-4008;-3508}}	territory_end
+npcmaker_ex_begin	[gludio02_1922_09]	name=[gludio02_1922_0901]	ai=[default_maker]	maximum_npc=8
+npc_ex_begin	[skeleton_infantry]	pos=anywhere	total=2	respawn=30sec	respawn_rand=10sec	npc_ex_end
+npc_ex_begin	[zombie_soldier]	pos=anywhere	total=2	respawn=30sec	respawn_rand=10sec	npc_ex_end
+npcmaker_ex_end
+territory_begin	[gludio02_1922_10]	{{-21576;143120;-3960;-3560};{-18368;142672;-3960;-3560};{-17992;146236;-3960;-3560};{-20895;146692;-3960;-3560};{-21968;145248;-3960;-3560}}	territory_end
+territory_begin	[gludio02_1922_05b]	{{-20463;143273;-3962;-3562};{-19902;143211;-3962;-3562};{-19868;143567;-3962;-3562};{-20421;143623;-3962;-3562}}	territory_end
+territory_begin	[gludio02_1922_06b]	{{-19808;143222;-3962;-3412};{-18731;143113;-3962;-3412};{-18666;143541;-3962;-3412};{-19738;143687;-3962;-3412}}	territory_end
+territory_begin	[gludio02_1922_07b]	{{-19263;143563;-3962;-3412};{-18694;143501;-3962;-3412};{-18649;143978;-3962;-3412};{-19233;144035;-3962;-3412}}	territory_end
+territory_begin	[gludio02_1922_08b]	{{-18972;144180;-3962;-3412};{-18617;144131;-3962;-3412};{-18525;144656;-3962;-3412};{-18897;144714;-3962;-3412}}	territory_end
+territory_begin	[gludio02_1922_09b]	{{-18603;145042;-3883;-3333};{-18203;145004;-3883;-3333};{-18175;145440;-3883;-3333};{-18559;145489;-3883;-3333}}	territory_end
+npcmaker_ex_begin	[gludio02_1922_10]	banned_territory={[gludio02_1922_05b];[gludio02_1922_06b];[gludio02_1922_07b];[gludio02_1922_08b];[gludio02_1922_09b]}	name=[gludio02_1922_1001]	ai=[default_maker]	maximum_npc=20
+npc_ex_begin	[zombie_soldier]	pos=anywhere	total=6	respawn=30sec	respawn_rand=10sec	npc_ex_end
+npc_ex_begin	[ruin_imp_ribe]	pos=anywhere	total=4	respawn=30sec	respawn_rand=10sec	npc_ex_end
+npc_ex_begin	[zombie_warrior]	pos=anywhere	total=5	respawn=30sec	respawn_rand=10sec	npc_ex_end
+npc_ex_begin	[veelan_bugbear]	pos=anywhere	total=3	respawn=30sec	respawn_rand=10sec	npc_ex_end
+npc_ex_begin	[veelan_bugbear_warrior]	pos=anywhere	total=2	respawn=30sec	respawn_rand=10sec	npc_ex_end
+npcmaker_ex_end
+territory_begin	[gludio02_1922_11]	{{-19085;138632;-3988;-3638};{-15530;138474;-3988;-3638};{-12912;140851;-3988;-3638};{-17901;142301;-3988;-3638}}	territory_end
+territory_begin	[gludio02_1922_15b]	{{-16768;141412;-3930;-3380};{-16327;141382;-3930;-3380};{-16271;141756;-3930;-3380};{-16716;141802;-3930;-3380}}	territory_end
+territory_begin	[gludio02_1922_16b]	{{-17928;141483;-3930;-3380};{-16887;141366;-3930;-3380};{-16824;141838;-3930;-3380};{-17868;141958;-3930;-3380}}	territory_end
+territory_begin	[gludio02_1922_17b]	{{-17964;141103;-3930;-3380};{-17383;141040;-3930;-3380};{-17329;141534;-3930;-3380};{-17907;141593;-3930;-3380}}	territory_end
+territory_begin	[gludio02_1922_18b]	{{-18039;140397;-3930;-3380};{-17707;140357;-3930;-3380};{-17631;140884;-3930;-3380};{-17972;140942;-3930;-3380}}	territory_end
+npcmaker_ex_begin	[gludio02_1922_11]	banned_territory={[gludio02_1922_15b];[gludio02_1922_16b];[gludio02_1922_17b];[gludio02_1922_18b]}	name=[gludio02_1922_1101]	ai=[default_maker]	maximum_npc=22
+npc_ex_begin	[zombie_soldier]	pos=anywhere	total=5	respawn=30sec	respawn_rand=10sec	npc_ex_end
+npc_ex_begin	[ruin_imp_ribe]	pos=anywhere	total=3	respawn=30sec	respawn_rand=10sec	npc_ex_end
+npc_ex_begin	[zombie_warrior]	pos=anywhere	total=7	respawn=30sec	respawn_rand=10sec	npc_ex_end
+npc_ex_begin	[veelan_bugbear]	pos=anywhere	total=3	respawn=30sec	respawn_rand=10sec	npc_ex_end
+npc_ex_begin	[veelan_bugbear_warrior]	pos=anywhere	total=4	respawn=30sec	respawn_rand=10sec	npc_ex_end
+npcmaker_ex_end
+territory_begin	[gludio02_1922_12]	{{-18221;142763;-3972;-3572};{-16391;142013;-3972;-3572};{-15796;145964;-3972;-3572};{-17651;146239;-3972;-3572}}	territory_end
+npcmaker_ex_begin	[gludio02_1922_12]	name=[gludio02_1922_1201]	ai=[default_maker]	maximum_npc=12
+npc_ex_begin	[zombie_soldier]	pos=anywhere	total=5	respawn=30sec	respawn_rand=10sec	npc_ex_end
+npc_ex_begin	[ruin_bat]	pos=anywhere	total=4	respawn=30sec	respawn_rand=10sec	npc_ex_end
+npc_ex_begin	[veelan_bugbear]	pos=anywhere	total=3	respawn=30sec	respawn_rand=10sec	npc_ex_end
+npcmaker_ex_end
+territory_begin	[gludio02_1922_13]	{{-16424;141892;-3976;-3376};{-12904;140924;-3976;-3376};{-12623;142369;-3976;-3376};{-16381;142664;-3976;-3376}}	territory_end
+npcmaker_ex_begin	[gludio02_1922_13]	name=[gludio02_1922_1301]	ai=[default_maker]	maximum_npc=6
+npc_ex_begin	[zombie_soldier]	pos=anywhere	total=2	respawn=30sec	respawn_rand=10sec	npc_ex_end
+npc_ex_begin	[zombie_warrior]	pos=anywhere	total=2	respawn=30sec	respawn_rand=10sec	npc_ex_end
+npc_ex_begin	[veelan_bugbear]	pos=anywhere	total=2	respawn=30sec	respawn_rand=10sec	npc_ex_end
+npcmaker_ex_end
+territory_begin	[gludio02_1922_14]	{{-16282;142756;-3936;-3436};{-12610;142441;-3936;-3436};{-11886;145289;-3936;-3436};{-13538;146592;-3936;-3436};{-15769;145943;-3936;-3436}}	territory_end
+territory_begin	[gludio02_1922_10b]	{{-15993;144167;-3739;-3189};{-15668;144133;-3739;-3189};{-15595;144671;-3739;-3189};{-15934;144724;-3739;-3189}}	territory_end
+territory_begin	[gludio02_1922_11b]	{{-16167;143033;-3745;-3195};{-15675;142968;-3745;-3195};{-15556;144019;-3745;-3195};{-16024;144078;-3745;-3195}}	territory_end
+territory_begin	[gludio02_1922_12b]	{{-15800;142985;-3745;-3195};{-15295;142928;-3745;-3195};{-15231;143500;-3745;-3195};{-15699;143563;-3745;-3195}}	territory_end
+territory_begin	[gludio02_1922_13b]	{{-15154;142707;-3745;-3195};{-14707;142659;-3745;-3195};{-14652;143042;-3745;-3195};{-15094;143105;-3745;-3195}}	territory_end
+territory_begin	[gludio02_1922_14b]	{{-14598;142653;-3745;-3195};{-14048;142605;-3745;-3195};{-14009;142929;-3745;-3195};{-14552;143004;-3745;-3195}}	territory_end
+npcmaker_ex_begin	[gludio02_1922_14]	banned_territory={[gludio02_1922_10b];[gludio02_1922_11b];[gludio02_1922_12b];[gludio02_1922_13b];[gludio02_1922_14b]}	name=[gludio02_1922_1401]	ai=[default_maker]	maximum_npc=22
+npc_ex_begin	[ruin_imp_ribe]	pos=anywhere	total=4	respawn=30sec	respawn_rand=10sec	npc_ex_end
+npc_ex_begin	[zombie_warrior]	pos=anywhere	total=7	respawn=30sec	respawn_rand=10sec	npc_ex_end
+npc_ex_begin	[veelan_bugbear]	pos=anywhere	total=5	respawn=30sec	respawn_rand=10sec	npc_ex_end
+npc_ex_begin	[veelan_bugbear_warrior]	pos=anywhere	total=6	respawn=30sec	respawn_rand=10sec	npc_ex_end
+npcmaker_ex_end
+territory_begin	[gludio02_1922_15]	{{-14748;138384;-3952;-3252};{-12852;137416;-3952;-3252};{-8792;140172;-3952;-3252};{-12636;140096;-3952;-3252}}	territory_end
+npcmaker_ex_begin	[gludio02_1922_15]	name=[gludio02_1922_1501]	ai=[default_maker]	maximum_npc=9
+npc_ex_begin	[veelan_bugbear]	pos=anywhere	total=3	respawn=30sec	respawn_rand=10sec	npc_ex_end
+npc_ex_begin	[veelan_bugbear_warrior]	pos=anywhere	total=6	respawn=30sec	respawn_rand=10sec	npc_ex_end
+npcmaker_ex_end
+territory_begin	[gludio02_1922_16]	{{-12560;140508;-3940;-3340};{-11100;140444;-3940;-3340};{-10408;144728;-3940;-3340};{-11600;145056;-3940;-3340}}	territory_end
+npcmaker_ex_begin	[gludio02_1922_16]	name=[gludio02_1922_1601]	ai=[default_maker]	maximum_npc=10
+npc_ex_begin	[zombie_soldier]	pos=anywhere	total=2	respawn=30sec	respawn_rand=10sec	npc_ex_end
+npc_ex_begin	[ruin_bat]	pos=anywhere	total=4	respawn=30sec	respawn_rand=10sec	npc_ex_end
+npc_ex_begin	[ruin_imp_ribe]	pos=anywhere	total=4	respawn=30sec	respawn_rand=10sec	npc_ex_end
+npcmaker_ex_end
+territory_begin	[gludio02_1922_17]	{{-9088;140372;-3768;-3168};{-7332;142732;-3768;-3168};{-8612;144088;-3768;-3168};{-10176;144492;-3768;-3168};{-10968;140440;-3768;-3168}}	territory_end
+npcmaker_ex_begin	[gludio02_1922_17]	name=[gludio02_1922_1701]	ai=[default_maker]	maximum_npc=10
+npc_ex_begin	[ruin_imp_ribe]	pos=anywhere	total=3	respawn=30sec	respawn_rand=10sec	npc_ex_end
+npc_ex_begin	[veelan_bugbear]	pos=anywhere	total=3	respawn=30sec	respawn_rand=10sec	npc_ex_end
+npc_ex_begin	[veelan_bugbear_warrior]	pos=anywhere	total=4	respawn=30sec	respawn_rand=10sec	npc_ex_end
+npcmaker_ex_end
+territory_begin	[gludio02_1922_18]	{{-7057;142569;-3804;-3104};{-2843;143689;-3804;-3104};{-2461;145001;-3804;-3104};{-4177;146949;-3804;-3104};{-7528;146880;-3804;-3104};{-8436;144112;-3804;-3104}}	territory_end
+npcmaker_ex_begin	[gludio02_1922_18]	name=[gludio02_1922_1801]	ai=[default_maker]	maximum_npc=20
+npc_ex_begin	[zombie_soldier]	pos=anywhere	total=4	respawn=30sec	respawn_rand=10sec	npc_ex_end
+npc_ex_begin	[ruin_bat]	pos=anywhere	total=6	respawn=30sec	respawn_rand=10sec	npc_ex_end
+npc_ex_begin	[ruin_imp_ribe]	pos=anywhere	total=7	respawn=30sec	respawn_rand=10sec	npc_ex_end
+npc_ex_begin	[veelan_bugbear]	pos=anywhere	total=3	respawn=30sec	respawn_rand=10sec	npc_ex_end
+npcmaker_ex_end
+territory_begin	[gludio02_1922_19]	{{-11552;145372;-3880;-2980};{-8432;144552;-3880;-2980};{-7377;147625;-3880;-2980};{-8524;149669;-3880;-2980};{-10169;149833;-3880;-2980};{-12324;146492;-3880;-2980}}	territory_end
+npcmaker_ex_begin	[gludio02_1922_19]	name=[gludio02_1922_1901]	ai=[default_maker]	maximum_npc=16
+npc_ex_begin	[ruin_imp]	pos=anywhere	total=2	respawn=30sec	respawn_rand=10sec	npc_ex_end
+npc_ex_begin	[corpse_eater_bat]	pos=anywhere	total=5	respawn=30sec	respawn_rand=10sec	npc_ex_end
+npc_ex_begin	[zombie_soldier]	pos=anywhere	total=4	respawn=30sec	respawn_rand=10sec	npc_ex_end
+npc_ex_begin	[ruin_bat]	pos=anywhere	total=5	respawn=30sec	respawn_rand=10sec	npc_ex_end
+npcmaker_ex_end
+territory_begin	[gludio02_1922_20]	{{-11568;147823;-3420;-2720};{-10087;150167;-3420;-2720};{-14202;151954;-3420;-2720};{-14854;149562;-3420;-2720}}	territory_end
+npcmaker_ex_begin	[gludio02_1922_20]	name=[gludio02_1922_2001]	ai=[default_maker]	maximum_npc=25
+npc_ex_begin	[skeleton_infantry]	pos=anywhere	total=5	respawn=30sec	respawn_rand=10sec	npc_ex_end
+npc_ex_begin	[ruin_imp]	pos=anywhere	total=5	respawn=30sec	respawn_rand=10sec	npc_ex_end
+npc_ex_begin	[corpse_eater_bat]	pos=anywhere	total=5	respawn=30sec	respawn_rand=10sec	npc_ex_end
+npcmaker_ex_end
