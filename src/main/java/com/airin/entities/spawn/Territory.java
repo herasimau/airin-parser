@@ -1,25 +1,52 @@
 package com.airin.entities.spawn;
 
+import javax.persistence.*;
 import java.util.HashMap;
 
 /**
  * Created by herasimau on 03/05/17.
  */
+@Entity
 public class Territory {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
 
     private String name;
     private String minZ;
     private String maxZ;
     private HashMap<String,String> coordinates;
+    private Boolean isBanned;
+    @ManyToOne
+    @JoinColumn(name = "group_id")
+    private SpawnGroup group;
 
     public Territory() {
     }
 
-    public Territory(String name, String minZ, String maxZ) {
-        this.name = name;
-        this.minZ = minZ;
-        this.maxZ = maxZ;
+    public Boolean getBanned() {
+        return isBanned;
+    }
+
+    public void setBanned(Boolean banned) {
+        isBanned = banned;
+    }
+
+    public SpawnGroup getGroup() {
+        return group;
+    }
+
+    public void setGroup(SpawnGroup group) {
+        this.group = group;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public HashMap<String, String> getCoordinates() {

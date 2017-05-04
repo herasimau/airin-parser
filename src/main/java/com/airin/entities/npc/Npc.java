@@ -1,10 +1,10 @@
 package com.airin.entities.npc;
 
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import com.airin.entities.spawn.SpawnGroup;
+
+import javax.persistence.*;
+import java.util.List;
 
 /**
  * Created by herasimau on 13/04/17.
@@ -13,7 +13,9 @@ import javax.persistence.ManyToOne;
 public class Npc {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    private Long gameId;
     private String name;
     private String count;
     private String respawnTime;
@@ -21,13 +23,30 @@ public class Npc {
     @ManyToOne
     @JoinColumn(name = "npc_params_id")
     private NpcParams npcParams;
+    @ManyToMany(targetEntity = SpawnGroup.class, cascade = {CascadeType.ALL})
+    @JoinTable(name = "npc_spawn_group", joinColumns = { @JoinColumn(name = "npc_id") },
+            inverseJoinColumns = { @JoinColumn(name = "spawn_group_id") })
+    private List<SpawnGroup> spawnGroups;
 
 
     public Npc() {
     }
 
+    public Long getGameId() {
+        return gameId;
+    }
 
+    public void setGameId(Long gameId) {
+        this.gameId = gameId;
+    }
 
+    public List<SpawnGroup> getSpawnGroups() {
+        return spawnGroups;
+    }
+
+    public void setSpawnGroups(List<SpawnGroup> spawnGroups) {
+        this.spawnGroups = spawnGroups;
+    }
 
     public NpcParams getNpcParams() {
         return npcParams;

@@ -27,7 +27,8 @@ public class NpcParser {
     @Value(value = "classpath:/npc.txt")
     private Resource npcData;
 
-    public void onInit(){
+    //@PostConstruct
+    public void parse(){
         try {
             List<Npc> npcList = new ArrayList<>();
             String content = IOUtils.toString(npcData.getInputStream(), "UTF-8");
@@ -37,7 +38,7 @@ public class NpcParser {
                 Npc npc = new Npc();
                 String[] params = contentSplit[i].trim().split("\\t");
                 npc.setName(params[2].replaceAll("\\[","").replaceAll("]",""));
-                npc.setId(Long.parseLong(params[1]));
+                npc.setGameId(Long.parseLong(params[1]));
                 npcList.add(npc);
                 if(i%100 == 0) {
                     npcRepository.save(npcList);

@@ -8,21 +8,21 @@ import java.util.List;
  */
 public class Spawn {
 
-    List<Group> groups;
+    List<SpawnGroup> groups;
 
 
 
-    public Spawn(List<Group> groups) {
+    public Spawn(List<SpawnGroup> groups) {
         this.groups = groups;
     }
 
 
 
-    public List<Group> getGroups() {
+    public List<SpawnGroup> getGroups() {
         return groups;
     }
 
-    public void setGroups(List<Group> groups) {
+    public void setGroups(List<SpawnGroup> groups) {
         this.groups = groups;
     }
 }

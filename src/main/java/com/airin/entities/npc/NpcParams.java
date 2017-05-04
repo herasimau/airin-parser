@@ -16,11 +16,24 @@ public class NpcParams {
     @Id
     private int id;
     private String name;
+    private String value;
     @OneToMany(mappedBy = "npcParams", cascade = CascadeType.ALL)
     private List<Npc> npcList;
 
     public NpcParams(){
 
+    }
+
+    public String getValue() {
+        return value;
+    }
+
+    public void setValue(String value) {
+        this.value = value;
+    }
+
+    public void setNpcList(List<Npc> npcList) {
+        this.npcList = npcList;
     }
 
     public NpcParams(String name) {
