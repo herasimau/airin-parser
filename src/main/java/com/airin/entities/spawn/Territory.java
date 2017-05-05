@@ -1,16 +1,19 @@
 package com.airin.entities.spawn;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Set;
 
 /**
  * Created by herasimau on 03/05/17.
  */
 @Entity
-public class Territory {
+public class Territory implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String name;
@@ -18,9 +21,8 @@ public class Territory {
     private String maxZ;
     private HashMap<String,String> coordinates;
     private Boolean isBanned;
-    @ManyToOne
-    @JoinColumn(name = "group_id")
-    private SpawnGroup group;
+    @ManyToMany(mappedBy = "territories", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Set<SpawnGroup> groups;
 
     public Territory() {
     }
@@ -33,12 +35,12 @@ public class Territory {
         isBanned = banned;
     }
 
-    public SpawnGroup getGroup() {
-        return group;
+    public Set<SpawnGroup> getGroups() {
+        return groups;
     }
 
-    public void setGroup(SpawnGroup group) {
-        this.group = group;
+    public void setGroups(Set<SpawnGroup> groups) {
+        this.groups = groups;
     }
 
     public Long getId() {

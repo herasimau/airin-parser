@@ -3,27 +3,33 @@ package com.airin.entities.spawn;
 import com.airin.entities.npc.Npc;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by herasimau on 03/05/17.
  */
 @Entity
 @Table(name = "spawn_group")
-public class SpawnGroup {
+public class SpawnGroup implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String name;
     private String aiName;
     private String territoryName;
 
-    @OneToMany(mappedBy = "group", cascade = CascadeType.ALL)
-    private List<Territory> territories;
-    @ManyToMany(mappedBy = "spawnGroups", cascade = CascadeType.ALL)
-    private List<Npc> npcList;
+    @ManyToMany(targetEntity = Territory.class, fetch = FetchType.EAGER)
+    @JoinTable(name = "spawn_group_territory", joinColumns = { @JoinColumn(name = "spawn_group_id") },
+            inverseJoinColumns = { @JoinColumn(name = "territory_id") })
+    private Set<Territory> territories;
+    @ManyToMany(targetEntity = Npc.class, fetch = FetchType.EAGER)
+    @JoinTable(name = "spawn_group_npc", joinColumns = { @JoinColumn(name = "spawn_group_id") },
+            inverseJoinColumns = { @JoinColumn(name = "npc_id") })
+    private Set<Npc> npcList;
 
     public SpawnGroup() {
     }
@@ -61,19 +67,19 @@ public class SpawnGroup {
         this.name = name;
     }
 
-    public List<Territory> getTerritories() {
+    public Set<Territory> getTerritories() {
         return territories;
     }
 
-    public void setTerritories(List<Territory> territories) {
+    public void setTerritories(Set<Territory> territories) {
         this.territories = territories;
     }
 
-    public List<Npc> getNpcList() {
+    public Set<Npc> getNpcList() {
         return npcList;
     }
 
-    public void setNpcList(List<Npc> npcList) {
+    public void setNpcList(Set<Npc> npcList) {
         this.npcList = npcList;
     }
 }

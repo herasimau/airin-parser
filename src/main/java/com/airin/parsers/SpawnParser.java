@@ -16,10 +16,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by herasimau on 03/05/17.
@@ -44,7 +41,7 @@ public class SpawnParser {
     @Autowired
     NpcParser npcParser;
 
-    @PostConstruct
+    //@PostConstruct
     public void onInit() {
         HashMap<String, Npc> npcHashMap = new HashMap<>();
         HashMap<String, SpawnGroup> groupHashMap = new HashMap<>();
@@ -52,13 +49,18 @@ public class SpawnParser {
         try {
             String npcContent = IOUtils.toString(npcData.getInputStream(), "UTF-8");
             String[] contentSplit = npcContent.trim().split("npc_begin");
-
+            List<Npc> npcListTemp = new ArrayList<>();
             for (int i = 1; i < contentSplit.length; i++) {
                 Npc npc = new Npc();
                 String[] params = contentSplit[i].trim().split("\\t");
                 npc.setName(params[2].replaceAll("\\[","").replaceAll("]",""));
                 npc.setGameId(Long.parseLong(params[1]));
-                npcHashMap.put(npc.getName(),npc);
+                //npcHashMap.put(npc.getName(),npc);
+                npcListTemp.add(npc);
+                if(npcRepository.findByName(npc.getName())==null){
+                    npcRepository.save(npc);
+                }
+
             }
 
 
@@ -67,36 +69,107 @@ public class SpawnParser {
             //Цикл для групп
             for (int i = 1; i < contentGroup.length; i++) {
                 SpawnGroup group = new SpawnGroup();
-                List<Npc> npcList = new ArrayList<>();
+                Set<Npc> npcList = new HashSet<>();
 
                 String[] params = contentGroup[i].trim().split("\\t");
 
-                group.setName(Utils.replaceBrackets(params[1].split("=")[1]));
-                group.setTerritoryName(Utils.replaceBrackets(params[0]));
+                if(params[1].split("=")[0].equalsIgnoreCase("banned_territory")){
+                    group.setName(Utils.replaceBrackets(params[2].split("=")[1]));
+                    String[] bannedTerr = Utils.replaceBrackets(params[1])
+                            .replaceAll("\\{","").replaceAll("}","").split(";");
 
-                group.setAiName(Utils.replaceBrackets(params[2].split("=")[1]));
-                String[] npcEx = contentGroup[i].trim().split("npc_ex_begin");
-                for (int j = 1; j < npcEx.length; j++) {
-                    Npc npc = new Npc();
-                    String[] npcParams = npcEx[j].trim().split("\\t");
-                    npc.setName(Utils.replaceBrackets(npcParams[0]));
-                    npc.setId(npcHashMap.get(npc.getName()).getId());
-                    for (int k = 1; k < npcParams.length; k++) {
-                        String[] pair = npcParams[k].split("=");
-                        if (pair[0].equalsIgnoreCase("respawn_rand")) {
-                            npc.setRespawnRandom(pair[1]);
-                        } else if (pair[0].equalsIgnoreCase("respawn")) {
-                            npc.setRespawnTime(pair[1]);
-                        } else if (pair[0].equalsIgnoreCase("total")) {
-                            npc.setCount(pair[1]);
+                    for (int j = 0; j < bannedTerr.length; j++) {
+                        group.setTerritoryName(bannedTerr[j]);
+
+                        group.setAiName(Utils.replaceBrackets(params[3].split("=")[1]));
+                        String[] npcEx = contentGroup[i].trim().split("npc_ex_begin");
+                        for (int k = 1; k < npcEx.length; k++) {
+
+                            String[] npcParams = npcEx[k].trim().split("\\t");
+                            Npc npc = npcRepository.findByName(Utils.replaceBrackets(npcParams[0]));
+                            for (int l = 1; l < npcParams.length; l++) {
+                                String[] pair = npcParams[k].split("=");
+                                if (pair[0].equalsIgnoreCase("respawn_rand")) {
+                                    npc.setRespawnRandom(pair[1]);
+                                } else if (pair[0].equalsIgnoreCase("respawn")) {
+                                    npc.setRespawnTime(pair[1]);
+                                } else if (pair[0].equalsIgnoreCase("total")) {
+                                    npc.setCount(pair[1]);
+                                }
+
+                            }
+                            npcRepository.save(npc);
+                            npcList.add(npc);
+                            globalListNpc.add(npc);
+
                         }
+                        group.setNpcList(npcList);
+                        groupHashMap.put(group.getTerritoryName(), group);
+                    }
+                    if(Utils.replaceBrackets(params[2].split("=")[1])!=null){
+
+                        SpawnGroup mainGroup = new SpawnGroup();
+                        Set<Npc> npcListMainGroup = new HashSet<>();
+
+                        mainGroup.setName(Utils.replaceBrackets(params[2].split("=")[1]));
+                        mainGroup.setTerritoryName(Utils.replaceBrackets(params[0]));
+
+                        mainGroup.setAiName(Utils.replaceBrackets(params[3].split("=")[1]));
+                        String[] npcExMain = contentGroup[i].trim().split("npc_ex_begin");
+                        for (int y = 1; y < npcExMain.length; y++) {
+
+                            String[] npcParams = npcExMain[y].trim().split("\\t");
+                            Npc npc = npcRepository.findByName(Utils.replaceBrackets(npcParams[0]));
+                            for (int k = 1; k < npcParams.length; k++) {
+                                String[] pair = npcParams[k].split("=");
+                                if (pair[0].equalsIgnoreCase("respawn_rand")) {
+                                    npc.setRespawnRandom(pair[1]);
+                                } else if (pair[0].equalsIgnoreCase("respawn")) {
+                                    npc.setRespawnTime(pair[1]);
+                                } else if (pair[0].equalsIgnoreCase("total")) {
+                                    npc.setCount(pair[1]);
+                                }
+
+                            }
+                            npcRepository.save(npc);
+                            npcListMainGroup.add(npc);
+                            globalListNpc.add(npc);
+
+                        }
+                        group.setNpcList(npcListMainGroup);
+                        groupHashMap.put(mainGroup.getTerritoryName(), group);
 
                     }
-                    npcList.add(npc);
-                    globalListNpc.add(npc);
+                } else {
+                    group.setName(Utils.replaceBrackets(params[1].split("=")[1]));
+                    group.setTerritoryName(Utils.replaceBrackets(params[0]));
+
+                    group.setAiName(Utils.replaceBrackets(params[2].split("=")[1]));
+                    String[] npcEx = contentGroup[i].trim().split("npc_ex_begin");
+                    for (int j = 1; j < npcEx.length; j++) {
+
+                        String[] npcParams = npcEx[j].trim().split("\\t");
+                        Npc npc = npcRepository.findByName(Utils.replaceBrackets(npcParams[0]));
+                        for (int k = 1; k < npcParams.length; k++) {
+                            String[] pair = npcParams[k].split("=");
+                            if (pair[0].equalsIgnoreCase("respawn_rand")) {
+                                npc.setRespawnRandom(pair[1]);
+                            } else if (pair[0].equalsIgnoreCase("respawn")) {
+                                npc.setRespawnTime(pair[1]);
+                            } else if (pair[0].equalsIgnoreCase("total")) {
+                                npc.setCount(pair[1]);
+                            }
+
+                        }
+                        npcRepository.save(npc);
+                        npcList.add(npc);
+                        globalListNpc.add(npc);
+
+                    }
+                    group.setNpcList(npcList);
+                    groupHashMap.put(group.getTerritoryName(), group);
                 }
-                group.setNpcList(npcList);
-                groupHashMap.put(group.getTerritoryName(), group);
+
 
             }
 
@@ -104,7 +177,7 @@ public class SpawnParser {
             String[] contentTerritory = content.trim().split("territory_begin");
 
             for (int i = 1; i < contentTerritory.length; i++) {
-                List<Territory> territoryList = new ArrayList<>();
+                Set<Territory> territoryList = new HashSet<>();
                 HashMap<String, String> coord = new HashMap<>();
                 String[] params = contentTerritory[i].trim().split("\\t");
 
@@ -133,11 +206,11 @@ public class SpawnParser {
                 }
                 territory.setCoordinates(coord);
                 territoryList.add(territory);
-                //territoryRepository.save(territory);
+                territoryRepository.save(territory);
 
                  if (groupHashMap.get(territory.getName()) != null) {
                         if (groupHashMap.get(territory.getName()).getTerritories() != null) {
-                            List<Territory> temp = groupHashMap.get(territory.getName()).getTerritories();
+                            Set<Territory> temp = groupHashMap.get(territory.getName()).getTerritories();
                             temp.add(territory);
                             groupHashMap.get(territory.getName()).setTerritories(temp);
                         } else {
@@ -148,7 +221,6 @@ public class SpawnParser {
 
             }
 
-            npcRepository.deleteAllInBatch();
           groupHashMap.forEach((k,v)
                   ->spawnGroupRepository.save(v));
 

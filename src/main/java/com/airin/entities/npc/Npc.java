@@ -4,18 +4,21 @@ package com.airin.entities.npc;
 import com.airin.entities.spawn.SpawnGroup;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by herasimau on 13/04/17.
  */
 @Entity
-public class Npc {
+public class Npc implements Serializable{
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Long gameId;
+    @Column(unique=true)
     private String name;
     private String count;
     private String respawnTime;
@@ -23,10 +26,8 @@ public class Npc {
     @ManyToOne
     @JoinColumn(name = "npc_params_id")
     private NpcParams npcParams;
-    @ManyToMany(targetEntity = SpawnGroup.class, cascade = {CascadeType.ALL})
-    @JoinTable(name = "npc_spawn_group", joinColumns = { @JoinColumn(name = "npc_id") },
-            inverseJoinColumns = { @JoinColumn(name = "spawn_group_id") })
-    private List<SpawnGroup> spawnGroups;
+    @ManyToMany(mappedBy = "npcList", cascade = CascadeType.ALL)
+    private Set<SpawnGroup> spawnGroups;
 
 
     public Npc() {
@@ -40,11 +41,11 @@ public class Npc {
         this.gameId = gameId;
     }
 
-    public List<SpawnGroup> getSpawnGroups() {
+    public Set<SpawnGroup> getSpawnGroups() {
         return spawnGroups;
     }
 
-    public void setSpawnGroups(List<SpawnGroup> spawnGroups) {
+    public void setSpawnGroups(Set<SpawnGroup> spawnGroups) {
         this.spawnGroups = spawnGroups;
     }
 
