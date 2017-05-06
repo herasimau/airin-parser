@@ -12,7 +12,9 @@ import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.PostConstruct;
 import java.io.IOException;
@@ -23,11 +25,6 @@ import java.util.*;
  */
 @Service
 public class SpawnParser {
-    @Value(value = "classpath:/spawnData.txt")
-    private Resource spawnData;
-
-    @Value(value = "classpath:/npc.txt")
-    private Resource npcData;
 
     @Autowired
     NpcRepository npcRepository;
@@ -42,11 +39,11 @@ public class SpawnParser {
     NpcParser npcParser;
 
     //@PostConstruct
-    public void parse() {
+    public Set<SpawnGroup> parse(MultipartFile file) {
         HashMap<String, SpawnGroup> groupHashMap = new HashMap<>();
         List<Npc> globalListNpc = new ArrayList<>();
         try {
-            String content = IOUtils.toString(spawnData.getInputStream(), "UTF-8");
+            String content = IOUtils.toString(file.getInputStream(), "UTF-8");
             String[] contentGroup = content.trim().split("npcmaker_ex_begin");
             //Цикл для групп
             for (int i = 1; i < contentGroup.length; i++) {
@@ -67,7 +64,7 @@ public class SpawnParser {
                         for (int k = 1; k < npcEx.length; k++) {
                             String[] npcParams = npcEx[k].trim().split("\\t");
                             Npc npc = npcParser.parseNpc(npcParams);
-                            npcRepository.save(npc);
+                           // npcRepository.save(npc);
                             npcList.add(npc);
                             globalListNpc.add(npc);
 
@@ -89,7 +86,7 @@ public class SpawnParser {
 
                             String[] npcParams = npcExMain[y].trim().split("\\t");
                             Npc npc = npcParser.parseNpc(npcParams);
-                            npcRepository.save(npc);
+                          //  npcRepository.save(npc);
                             npcListMainGroup.add(npc);
                             globalListNpc.add(npc);
 
@@ -108,7 +105,7 @@ public class SpawnParser {
 
                         String[] npcParams = npcEx[j].trim().split("\\t");
                         Npc npc = npcParser.parseNpc(npcParams);
-                        npcRepository.save(npc);
+                       // npcRepository.save(npc);
                         npcList.add(npc);
                         globalListNpc.add(npc);
 
@@ -153,7 +150,7 @@ public class SpawnParser {
                 }
                 territory.setCoordinates(coord);
                 territoryList.add(territory);
-                territoryRepository.save(territory);
+               // territoryRepository.save(territory);
 
                 if (groupHashMap.get(territory.getName()) != null) {
                     if (groupHashMap.get(territory.getName()).getTerritories() != null) {
@@ -167,13 +164,29 @@ public class SpawnParser {
 
 
             }
-
+            Set<SpawnGroup> result = new HashSet<>();
             groupHashMap.forEach((k, v)
-                    -> spawnGroupRepository.save(v));
+                    -> {
+                result.add(v);
+            });
+            updateDatabase(groupHashMap);
 
+            return result;
         } catch (IOException e) {
             e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
+        return null;
+    }
+
+    @Async
+    public void updateDatabase(HashMap<String,SpawnGroup> groupHashMap) throws InterruptedException {
+        groupHashMap.forEach((k, v)
+                -> {
+            spawnGroupRepository.save(v);
+        });
+
     }
 
 }

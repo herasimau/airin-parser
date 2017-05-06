@@ -1,6 +1,7 @@
 package com.airin.controller;
 
 
+import com.airin.service.ParserService;
 import com.airin.storage.StorageFileNotFoundException;
 import com.airin.storage.StorageService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,9 @@ import java.util.stream.Collectors;
 
 @Controller
 public class FileController {
+
+    @Autowired
+    ParserService parserService;
 
     private final StorageService storageService;
 
@@ -54,11 +58,12 @@ public class FileController {
 
     @PostMapping("/")
     public String handleFileUpload(@RequestParam("file") MultipartFile file,
-                                   RedirectAttributes redirectAttributes) {
+                                   @RequestParam("parseType") String parseType,RedirectAttributes redirectAttributes) {
 
-        storageService.store(file);
+        MultipartFile convertedFile = parserService.parseSpawnFile(file);
+        storageService.store(convertedFile);
         redirectAttributes.addFlashAttribute("message",
-                "You successfully uploaded " + file.getOriginalFilename() + "!");
+                "Файл успешно сконвертирован " + file.getOriginalFilename() + "!");
 
         return "redirect:/";
     }

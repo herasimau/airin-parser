@@ -2,14 +2,15 @@ package com.airin.xml;
 
 import com.airin.entities.spawn.SpawnGroup;
 import com.airin.repositories.SpawnGroupRepository;
+import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 import org.w3c.dom.Attr;
 import org.w3c.dom.Comment;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
-
-import javax.annotation.PostConstruct;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -19,9 +20,8 @@ import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
-import java.io.File;
-import java.io.StringWriter;
-import java.util.Set;
+import java.io.*;
+
 
 /**
  * Created by herasimau on 05/05/17.
@@ -31,17 +31,8 @@ public class Writer {
     @Autowired
     SpawnGroupRepository spawnGroupRepository;
 
-    @PostConstruct
-    public void init(){
-        try {
-            writeSpawnGroups(spawnGroupRepository.findAll());
-        } catch (ParserConfigurationException e) {
-            e.printStackTrace();
-        } catch (TransformerException e) {
-            e.printStackTrace();
-        }
-    }
-    public void writeSpawnGroups(Iterable<SpawnGroup> spawnGroups) throws ParserConfigurationException, TransformerException {
+
+    public MultipartFile writeSpawnGroups(Iterable<SpawnGroup> spawnGroups, String fileName) throws ParserConfigurationException, TransformerException {
         DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder docBuilder =  docBuilder = docFactory.newDocumentBuilder();
         Document doc = docBuilder.newDocument();
@@ -52,7 +43,7 @@ public class Writer {
         rootElement.appendChild(spawnElement);
 
         Attr spawnName = doc.createAttribute("name");
-        spawnName.setValue("19_22");
+        spawnName.setValue(fileName.split("\\.")[0]);
         spawnElement.setAttributeNode(spawnName);
 
         spawnGroups.forEach(spawnGroup -> {
@@ -139,16 +130,24 @@ public class Writer {
         Transformer transformer = TransformerFactory.newInstance().newTransformer();
         transformer.setOutputProperty(OutputKeys.INDENT, "yes");
         transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2");
-        StreamResult result = new StreamResult(new File("/home/herasimau/Documents/parser/spawn.xml"));
+        String xmlFileName = fileName.split("\\.")[0]+".xml";
+        File  xmlResult = new File(xmlFileName);
+        StreamResult result = new StreamResult(xmlResult);
         DOMSource source = new DOMSource(doc);
         transformer.transform(source, result);
 
-//
-//        TransformerFactory transformerFactory = TransformerFactory.newInstance();
-//        Transformer transformer = transformerFactory.newTransformer();
-//        DOMSource source = new DOMSource(doc);
-//        StreamResult result = new StreamResult(new File("/home/herasimau/Documents/parser/spawn.xml"));
 
-        System.out.println("Convert finished");
+        try {
+            FileInputStream input = new FileInputStream(xmlResult);
+            MultipartFile multipartFile = new MockMultipartFile("file",
+                    xmlFileName, "text/plain", IOUtils.toByteArray(input));
+            return multipartFile;
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    return null;
     }
 }

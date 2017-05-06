@@ -22,11 +22,11 @@ public class SpawnGroup implements Serializable {
     private String aiName;
     private String territoryName;
 
-    @ManyToMany(targetEntity = Territory.class, fetch = FetchType.EAGER)
+    @ManyToMany(targetEntity = Territory.class, fetch = FetchType.EAGER, cascade=CascadeType.ALL)
     @JoinTable(name = "spawn_group_territory", joinColumns = { @JoinColumn(name = "spawn_group_id") },
             inverseJoinColumns = { @JoinColumn(name = "territory_id") })
     private Set<Territory> territories;
-    @ManyToMany(targetEntity = Npc.class, fetch = FetchType.EAGER)
+    @ManyToMany(targetEntity = Npc.class, fetch = FetchType.EAGER, cascade=CascadeType.ALL)
     @JoinTable(name = "spawn_group_npc", joinColumns = { @JoinColumn(name = "spawn_group_id") },
             inverseJoinColumns = { @JoinColumn(name = "npc_id") })
     private Set<Npc> npcList;
